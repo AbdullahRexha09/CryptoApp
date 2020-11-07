@@ -1,0 +1,52 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Datatables</h1>
+      <div *ngIf="isDataSend" class="alert alert-success">Data Saved Successfully</div>
+      <div *ngIf="isRefreshSuccess" class="alert alert-success">Data Refreshed Successfully</div>
+
+    </div>  
+    <button routerLink="" style="width: 20%;">Back</button>  
+    <button style="margin: 20px;align-self: start;width: 50%;" (click)= "dataToSend()">Save</button>
+    <button style="width: 20%;" (click)="refreshToken()">Refresh Token</button>
+    
+
+
+    <!-- Content Row -->
+
+    <div class="row">
+
+<table width="100%" class="table table-striped table-bordered table-sm row-border hover" datatable [dtOptions]="dtOptions" style="width:100%">
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Rank</th>
+    <th>Symbol</th>
+    <th>Name</th>
+    <th>Supply</th>
+    <th>maxSupply</th>
+
+  </tr>
+  </thead>
+  <tbody>
+   <tr *ngFor="let group of data">
+     <td>{{group.id}}</td>
+     <td>{{group.rank}}</td>
+     <td>{{group.symbol}}</td>
+     <td>{{group.name}}</td>
+     <td>{{group.supply}}</td>
+     <td>{{group.maxSupply}}</td>
+     <td><input type="checkbox" name="websitecheck" [checked]="group.isChecked" (click) = "checkByOne(group)" value="{{group.website}}"></td>
+   </tr>
+  </tbody>
+</table>
+</div>
+
+   
+  </div>
+  <!-- /.container-fluid -->
+<style>
+.dataTables_wrapper{width:100%;}
+</style>
